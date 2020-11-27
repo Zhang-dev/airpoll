@@ -1,0 +1,16 @@
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover,
+a:active {
+    color: #808080;
+    cursor: pointer;
+}
+
+.navigation-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
