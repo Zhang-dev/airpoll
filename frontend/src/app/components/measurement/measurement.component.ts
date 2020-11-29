@@ -28,6 +28,10 @@ export class MeasurementComponent implements OnInit, AfterViewInit {
     this.getTableData();
   }
 
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+
   public getTableData = () => {
     this.service.getMeasurements()
       .subscribe(response => {

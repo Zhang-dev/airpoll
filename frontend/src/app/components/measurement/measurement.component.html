@@ -1,3 +1,8 @@
+<div fxLayout fxLayoutAlign="center center">
+    <mat-form-field fxFlex="35%">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search country or city">
+    </mat-form-field>
+  </div>
 <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="location">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
