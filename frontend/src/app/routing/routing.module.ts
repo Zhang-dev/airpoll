@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MeasurementComponent } from '../components/air-quality/measurement/measurement.component';
+import { MeasurementComponent } from '../components/measurement/measurement.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 
 
