@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MeasurementService } from 'src/app/services/measurement.service';
 import { Measurement } from 'src/app/_interfaces/measurement.model';
 import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-measurement',
@@ -18,10 +19,13 @@ export class MeasurementComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(private service: MeasurementService) { }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {
