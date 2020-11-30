@@ -21,8 +21,11 @@ a:active {
     margin-right: auto;
     overflow: auto;
     background-image: linear-gradient(to bottom right,#0c70a6, #77d1e3);
+    padding-right: 30px;
+}
 
-
+mat-icon {
+    color:whitesmoke;
 }
 
 
