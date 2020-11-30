@@ -1,16 +1,28 @@
 a {
     text-decoration: none;
-    color: #000;
+    color:whitesmoke;
 }
 
 a:hover,
 a:active {
-    color: #808080;
+    color: #77d1e3;
     cursor: pointer;
 }
 
 .navigation-items {
     list-style-type: none;
-    padding: 0;
+    padding: 0 20px;
     margin: 0;
 }
+
+.mat-toolbar {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    background-image: linear-gradient(to bottom right,#0c70a6, #77d1e3);
+
+
+}
+
+
