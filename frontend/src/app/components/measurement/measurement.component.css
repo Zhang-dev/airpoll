@@ -4,11 +4,12 @@
     margin-right: auto;
     overflow: auto;
     min-width: 600px;
-    max-width: 1080px;
+    max-width: 1120px;
+
 }
 
 .table-container {
-    max-height: 730px;
+    height: 800px;
     overflow: auto;
 }
 
@@ -23,4 +24,44 @@
     white-space: nowrap;
     overflow: hidden;
     vertical-align: middle;
+    font-family: 'PT Sans', sans-serif;
+    color: white;
+}
+
+::ng-deep .mat-form-field-label {
+    color: white !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: white !important;
+}
+
+input, select, textarea{
+    color: white;
+}
+
+.measurement-wrapper {
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+    background: linear-gradient(-120deg, #0c70a6, #65b2c2, #da6dbe, #c59a59);
+    background-size: 400% 400%;
+    animation: gradient 45s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }

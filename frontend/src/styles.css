@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 
 html,
 body {
@@ -8,8 +10,22 @@ body {
 body {
     margin: 0;
     font-family: 'PT Sans', sans-serif;
+    background: linear-gradient(-45deg, #0c70a6, #77d1e3, #72ecce, #ebec8d);
+    background-size: 400% 400%;
+    animation: gradient 25s ease infinite;
 }
 
-@import "~\@angular\material\prebuilt-themes\deeppurple-amber.css";
-@import "~bootstrap/dist/css/bootstrap.css";
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

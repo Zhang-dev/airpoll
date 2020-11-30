@@ -1,6 +1,6 @@
 a {
     text-decoration: none;
-    color:whitesmoke;
+    color: whitesmoke;
 }
 
 a:hover,
@@ -20,12 +20,10 @@ a:active {
     margin-left: auto;
     margin-right: auto;
     overflow: auto;
-    background-image: linear-gradient(to bottom right,#0c70a6, #77d1e3);
+    background-image: linear-gradient(to bottom right, #0c70a6, #77d1e3);
     padding-right: 30px;
 }
 
 mat-icon {
-    color:whitesmoke;
+    color: whitesmoke;
 }
-
-
