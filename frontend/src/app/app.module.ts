@@ -11,6 +11,7 @@ import { SidenavListComponent } from './components/sidenav-list/sidenav-list.com
 import { MeasurementComponent } from './components/measurement/measurement.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CoordinatesModule } from 'angular-coordinates';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { CoordinatesModule } from 'angular-coordinates';
     DashboardComponent,
     HeaderComponent,
     SidenavListComponent,
-    MeasurementComponent
+    MeasurementComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { CoordinatesModule } from 'angular-coordinates';
     AngularMaterialModule,
     FlexLayoutModule,
     HttpClientModule,
-    CoordinatesModule
+    CoordinatesModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

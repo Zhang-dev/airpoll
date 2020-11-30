@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MeasurementService } from 'src/app/services/measurement.service';
 import { Measurement } from 'src/app/_interfaces/measurement.model';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-measurement',
@@ -12,36 +11,53 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class MeasurementComponent implements OnInit, AfterViewInit {
 
-  measurements: Measurement[];
-
   public displayedColumns = ['location', 'city', 'country', 'parameter', 'pollution', 'coordinates', 'date'];
   public dataSource = new MatTableDataSource<Measurement>();
+  allMeasurements: Measurement[];
+  displayedMeasurements: Measurement[];
+  displayedNum: number = 20;
 
   @ViewChild(MatSort) sort: MatSort;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: MeasurementService) { }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {
-    this.getTableData();
+    this.getAllMeasurements(this.displayedNum);
+  }
+
+  onScroll(e) {
+    let scrollTop = e.target.scrollTop;
+    let scrollHeight = e.target.scrollHeight;
+    let clientHeight = e.target.clientHeight;
+    if ((scrollTop + clientHeight) / scrollHeight > 0.99) {
+      this.displayMoreData();
+    }
   }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  public getTableData = () => {
+  public getAllMeasurements = (initNumber) => {
     this.service.getMeasurements()
       .subscribe(response => {
-        this.dataSource.data = response["results"] as Measurement[];
-        console.log(this.dataSource.data);
+        this.allMeasurements = (response["results"] as Measurement[]);
+        this.displayedMeasurements = this.allMeasurements.slice(0, initNumber);
+        this.dataSource.data = this.displayedMeasurements;
       })
+  }
+
+  displayMoreData() {
+    if(this.displayedNum < this.allMeasurements.length){
+      let newMeasurements = this.allMeasurements.slice(this.displayedNum, this.displayedNum + 5);
+      this.displayedMeasurements = this.displayedMeasurements.concat(newMeasurements);
+      this.dataSource.data = this.displayedMeasurements;
+      this.displayedNum += 5;
+    }
   }
 
 }
