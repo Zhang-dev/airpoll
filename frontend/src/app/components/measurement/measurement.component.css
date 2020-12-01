@@ -5,7 +5,6 @@
     overflow: auto;
     min-width: 600px;
     max-width: 1120px;
-
 }
 
 .table-container {
@@ -40,14 +39,17 @@
     background-color: white !important;
 }
 
-input, select, textarea{
+input,
+select,
+textarea {
     color: white;
 }
 
 .measurement-wrapper {
-    margin: 0;
+    margin-top: 2px;
+    padding-top: 16px;
     font-family: 'PT Sans', sans-serif;
-    background: linear-gradient(-120deg, #0c70a6, #65b2c2, #da6dbe, #c59a59);
+    background: linear-gradient(-120deg, #0c70a6, #2aa4bd, #cc4cac, #c5954c);
     background-size: 400% 400%;
     animation: gradient 45s ease infinite;
 }

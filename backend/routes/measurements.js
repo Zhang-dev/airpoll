@@ -1,14 +1,10 @@
+const { Measurement } = require('../modules/measurement')
 const express = require('express');
 const router = express.Router();
 
-const measurements = [
-    { id: 1, name: 'first measurement' },
-    { id: 1, name: 'first measurement' },
-    { id: 1, name: 'first measurement' }
-]
-
-router.get('/', (req, res) => {
-    res.send(measurements).status(200);
+router.get('/', async (req, res) => {
+    const measurements = await Measurement.find();
+    res.status(200).header().send(measurements);
 })
 
 module.exports = router;

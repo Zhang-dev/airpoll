@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MeasurementService {
-  private url = "https://api.openaq.org/v1/measurements"
-
+  //private url = "https://api.openaq.org/v1/measurements"
+  private url = "http://localhost:9000/api/measurements"
   constructor(private http: HttpClient) { }
 
   getMeasurements(){

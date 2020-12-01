@@ -45,7 +45,8 @@ export class MeasurementComponent implements OnInit, AfterViewInit {
   public getAllMeasurements = (initNumber) => {
     this.service.getMeasurements()
       .subscribe(response => {
-        this.allMeasurements = (response["results"] as Measurement[]);
+        //this.allMeasurements = (response["results"] as Measurement[]);
+        this.allMeasurements = (response as Measurement[]);
         this.displayedMeasurements = this.allMeasurements.slice(0, initNumber);
         this.dataSource.data = this.displayedMeasurements;
       })
