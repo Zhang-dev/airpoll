@@ -1,3 +1,11 @@
 {
-    "name": "Airpoll - Development"
+    "name": "Airpoll - Development",
+    "db": {
+        "user": "dev_1",
+        "password": "SVCWZbyyPnsq7Xm",
+        "name": "airpoll"
+    },
+    "datasource": {
+        "url": "https://api.openaq.org/v1/measurements"
+    }
 }

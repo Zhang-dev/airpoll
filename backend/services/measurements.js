@@ -1,8 +1,8 @@
 const request = require('request');
 
-const getAllMeasurements = function(options) {
+const getAllMeasurements = function(uri) {
     return new Promise((resolve,reject) => {
-      request('https://api.openaq.org/v1/measurements', (error, response, body) => {
+      request(uri, (error, response, body) => {
         if (response) {
           return resolve(response);
         }

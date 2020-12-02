@@ -26,12 +26,17 @@ const measurementSchema = new mongoose.Schema({
 
 const Measurement = mongoose.model('Measurement', measurementSchema);
 
-async function loadAllMeasurements() {
+async function loadAllMeasurements(uri) {
     console.log('loading measurements.')
-
-    let response = await measurementsService.getAllMeasurements();
-    measurements = JSON.parse(response.body).results
-    const results = await Measurement.create(measurements);
+    try {
+        let response = await measurementsService.getAllMeasurements(uri);
+        measurements = JSON.parse(response.body).results
+        const results = await Measurement.create(measurements);
+        console.log(`Results: ${results}
+        Data insertion completed.`)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 

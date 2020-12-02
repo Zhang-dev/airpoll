@@ -1,43 +1,33 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const cors = require('cors');
+const config = require('config');
 const morgan = require('morgan');
+const cors = require('./middlewares/cors');
 const home = require('./routes/home');
 const measurements = require('./routes/measurements');
 const { loadAllMeasurements } = require('./modules/measurement');
 const app = express();
 
-mongoose.connect('mongodb://localhost/airpoll')
+const dbUser = config.get('db.user');
+const dbPassword = config.get('db.password');
+const dbName = config.get('db.name');
+const datasourceUrl = config.get('datasource.url');
+
+mongoose
+    .connect(`mongodb+srv://${dbUser}:${dbPassword}@cluster-airpoll.sehtq.mongodb.net/${dbName}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('MongoDB connection succeeded.');
-        loadAllMeasurements();
+        loadAllMeasurements(datasourceUrl);
     })
     .catch(err => {
-        console.error('MongoDB connection failed.');
+        console.error('MongoDB connection failed.', err);
     })
 
 
 if (app.get('env') === 'development') {
     app.use(morgan('tiny'));
 }
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
+app.use(cors);
 app.use('/', home);
 app.use('/api/measurements', measurements);
 
