@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const measurementsService = require('../services/measurements');
+const countries = require("i18n-iso-countries");
+countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 let measurements;
 
@@ -30,7 +32,8 @@ async function loadAllMeasurements(uri) {
     console.log('loading measurements.')
     try {
         let response = await measurementsService.getAllMeasurements(uri);
-        measurements = JSON.parse(response.body).results
+        measurements = JSON.parse(response.body).results;
+        measurements.forEach(m => m.country = countries.getName(m.country, "en", { select: "official" }));
         const results = await Measurement.create(measurements);
         console.log(`Results: ${results}
         Data insertion completed.`)
