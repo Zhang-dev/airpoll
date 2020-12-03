@@ -1,24 +1,14 @@
-const { Measurement, loadAllMeasurements } = require('../modules/measurement')
+const { Measurement } = require('../modules/measurement')
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    let measurements;
-    try {
-        measurements = await Measurement.find();
-    } catch (error) {
-        console.log('Can not find measurements', error)
-    }
+router.get('/', async (req, res, next) => {
+    let measurements = await Measurement.find();
     res.status(200).header().send(measurements);
 })
 
 router.get('/removeAll', async (req, res) => {
-    let result;
-    try {
-        result = await Measurement.deleteMany({});
-    } catch (error) {
-        console.log('Can not find measurements', error)
-    }
+    let result = await Measurement.deleteMany({});
     res.status(200).header().send(result);
 })
 
