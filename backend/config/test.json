@@ -1,0 +1,10 @@
+{
+    "name": "Airpoll - Test",
+    "port": 9000,
+    "db": {
+        "url": "mongodb+srv://dev_1:SVCWZbyyPnsq7Xm@cluster-airpoll.sehtq.mongodb.net/airpoll-test?retryWrites=true&w=majority"
+    },
+    "datasource": {
+        "url": "https://api.openaq.org/v1/measurements"
+    }
+}

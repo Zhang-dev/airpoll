@@ -1,4 +1,4 @@
-const { Measurement } = require('../modules/measurement')
+const { Measurement } = require('../models/measurement')
 const express = require('express');
 const router = express.Router();
 
