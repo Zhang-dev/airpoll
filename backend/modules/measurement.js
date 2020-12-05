@@ -33,12 +33,16 @@ async function loadAllMeasurements(uri) {
     winston.info('loading measurements. Please wait...')
     try {
         let response = await measurementsService.getAllMeasurements(uri);
-        measurements = JSON.parse(response.body).results;
-        measurements.forEach(m => m.country = countries.getName(m.country, "en", { select: "official" }));
-        const results = await Measurement.create(measurements);
-        winston.info('Data insertion completed.')
+        if(response.statusCode===200){
+            measurements = JSON.parse(response.body).results;
+            measurements.forEach(m => m.country = countries.getName(m.country, "en", { select: "official" }));
+            const results = await Measurement.create(measurements);
+            winston.info('Data insertion completed.')
+        }else{
+            throw new Error("Failed in fetching data from Open AQ platform API.")
+        }
     } catch (error) {
-        winston.error(error)
+        winston.error(error.message, error)
     }
 }
 

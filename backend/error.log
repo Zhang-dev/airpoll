@@ -1,0 +1,5 @@
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error","message":"Unexpected token < in JSON at position 0 Unexpected token < in JSON at position 0","stack":"SyntaxError: Unexpected token < in JSON at position 0\n    at JSON.parse (<anonymous>)\n    at loadAllMeasurements (C:\\Users\\zhang.zhan\\Documents\\GitHub\\Code.Now\\backend\\modules\\measurement.js:36:29)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"}
+{"level":"error","message":"Failed in fetching data from Open AQ platform API. Failed in fetching data from Open AQ platform API.","stack":"Error: Failed in fetching data from Open AQ platform API.\n    at loadAllMeasurements (C:\\Users\\zhang.zhan\\Documents\\GitHub\\Code.Now\\backend\\modules\\measurement.js:42:19)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"}
