@@ -1,6 +1,6 @@
 const morgan = require('morgan');
 const home = require('../routes/home');
-const measurements = require('../routes/measurements');
+const { measurements } = require('../routes/measurements');
 const cors = require('../middlewares/cors');
 const error = require('../middlewares/error');
 

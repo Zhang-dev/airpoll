@@ -1,12 +1,13 @@
 const request = require('supertest');
-const { Measurement } = require('../../models/measurement');
+const { Measurement } = require('../../../models/measurement');
 
 let server;
 
 describe('/api/measurements', () => {
-    beforeEach(async () => { server = await require('../../index') })
+    beforeEach(async () => { server = await require('../../../index') })
     afterEach(async () => {
         Measurement.deleteMany({}).then(() => { server.close() })
+        jest.clearAllMocks();
     })
 
     describe('GET /', () => {
@@ -29,16 +30,11 @@ describe('/api/measurements', () => {
 })
 
 describe('/', () => {
-    beforeEach(async () => { server = await require('../../index') })
-    afterEach(async () => {
-        Measurement.deleteMany({}).then(() => { server.close() })
-    })
     describe('GET /', () => {
         it('should be reachable', async () => {
             const response = await request(server).get('/')
             expect(response.status).toBe(200)
             expect(response.text).toMatch(/(Welcome)/i)
-
         })
     })
 })

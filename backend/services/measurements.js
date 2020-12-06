@@ -7,15 +7,9 @@ let options = {
 const getAllMeasurements = function (uri) {
   return new Promise((resolve, reject) => {
     request(uri, options, (error, response, body) => {
-      if (response) {
-        return resolve(response);
-      }
-      if (error) {
-        return reject(error);
-      }
+      return resolve(response);
     });
   });
 };
-
 
 module.exports.getAllMeasurements = getAllMeasurements;
