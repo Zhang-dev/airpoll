@@ -1,5 +1,6 @@
 import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,12 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 
 export class AppComponent {
+  public constructor(private titleService: Title) { }
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
+
   opened = true;
   @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
 
@@ -20,6 +27,8 @@ export class AppComponent {
       //this.sidenav.fixedTopGap = 55;
       this.opened = true;
     }
+
+    this.setTitle('Airpoll')
   }
 
   @HostListener('window:resize', ['$event'])

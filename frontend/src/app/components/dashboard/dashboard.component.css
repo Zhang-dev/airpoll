@@ -2,4 +2,10 @@
     height: 100%;
 }
 
-
+.dashboard-wrapper {
+    margin-top: 2px;
+    font-family: 'PT Sans', sans-serif;
+    background: linear-gradient(-120deg, #0c70a6, #2aa4bd, #cc4cac, #c5954c);
+    background-size: 400% 400%;
+    animation: gradient 45s ease infinite;
+}

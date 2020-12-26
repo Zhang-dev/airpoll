@@ -16,18 +16,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'acn-code-now'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('acn-code-now');
-  });
-
-  it('should render title', () => {
+  it(`should have as title 'Airpoll'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain(
-      'acn-code-now app is running!'
-    );
+
+    const app = fixture.debugElement.componentInstance;
+    expect(app.titleService.getTitle()).toEqual('Airpoll');
   });
 });
