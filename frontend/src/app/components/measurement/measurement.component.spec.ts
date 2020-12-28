@@ -1,10 +1,14 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatInput } from '@angular/material/input';
 import { MatHeaderCell } from '@angular/material/table';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoordinatesModule } from 'angular-coordinates';
+import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
 import { AngularMaterialModule } from 'src/app/material/material.module';
+import { MeasurementService } from 'src/app/services/measurement.service';
+import { Measurement } from 'src/app/_interfaces/measurement.model';
 
 import { MeasurementComponent } from './measurement.component';
 
@@ -15,8 +19,9 @@ describe('MeasurementComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MeasurementComponent],
-      imports: [HttpClientModule, AngularMaterialModule, BrowserAnimationsModule
-      ]
+      imports: [AngularMaterialModule, BrowserAnimationsModule, CoordinatesModule
+      ],
+      providers: [{ provide: MeasurementService, useClass: MeasurementServiceStub }]
     })
       .compileComponents();
   }));
@@ -105,3 +110,25 @@ describe('MeasurementComponent', () => {
     expect(index).toBeGreaterThan(-1);
   })
 });
+
+class MeasurementServiceStub {
+  getMeasurements() {
+    let dummyMeasurement = {
+      city: null,
+      country: null,
+      location: null,
+      parameter: null,
+      unit: null,
+      value: null,
+      coordinates: { latitude: 59.362291, longitude: 59.362291 },
+      date: null
+    };
+    let allMeasurements = new Array<Measurement>();
+
+    for (let index = 0; index < 30; index++) {
+      allMeasurements.push(dummyMeasurement);
+    }
+
+    return Observable.of(allMeasurements);
+  }
+}

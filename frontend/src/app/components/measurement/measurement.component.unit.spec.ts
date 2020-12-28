@@ -1,10 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoordinatesModule } from 'angular-coordinates';
 import { AngularMaterialModule } from 'src/app/material/material.module';
 import { Measurement } from 'src/app/_interfaces/measurement.model';
-
+import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
 import { MeasurementComponent } from './measurement.component';
+import { MeasurementService } from 'src/app/services/measurement.service';
 
 describe('MeasurementComponent', () => {
   let component: MeasurementComponent;
@@ -13,8 +15,10 @@ describe('MeasurementComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MeasurementComponent],
-      imports: [HttpClientModule, AngularMaterialModule, BrowserAnimationsModule
-      ]
+      imports: [AngularMaterialModule, BrowserAnimationsModule, CoordinatesModule
+      ],
+      providers: [{ provide: MeasurementService, useClass: MeasurementServiceStub }]
+
     })
       .compileComponents();
   }));
@@ -53,44 +57,40 @@ describe('MeasurementComponent', () => {
   }));
 
   it('displayMoreData should display 5 more data if current data are less than all data', () => {
-    let dummyMeasurement = {city: null,
-    country: null,
-    location: null,
-    parameter: null,
-    unit: null,
-    value: null,
-    coordinates: {latitude:59.362291,longitude:59.362291},
-    date: null};
-    component.displayedNum = 1;
-    component.displayedMeasurements = new Array<Measurement>();
-    component.displayedMeasurements.push(dummyMeasurement)
-    component.allMeasurements = new Array<Measurement>();
-    for (let index = 0; index < 10; index++) {
-      component.allMeasurements.push(dummyMeasurement);
-    }
+    component.displayedNum = 20;
 
     component.displayMoreData();
 
-    expect(component.displayedNum).toBe(6);
+    expect(component.displayedNum).toBe(25);
   });
 
   it('displayMoreData should not display more data if all data are displayed', () => {
-    let dummyMeasurement = {city: null,
-    country: null,
-    location: null,
-    parameter: null,
-    unit: null,
-    value: null,
-    coordinates: {latitude:59.362291,longitude:59.362291},
-    date: null};
-    component.displayedNum = 10;
-    component.allMeasurements = new Array<Measurement>();
-    for (let index = 0; index < 10; index++) {
-      component.allMeasurements.push(dummyMeasurement);
-    }
-    
+    component.displayedNum = 40;
+
     component.displayMoreData();
 
-    expect(component.displayedNum).toBe(10);
+    expect(component.displayedNum).toBe(40);
   });
 });
+
+class MeasurementServiceStub {
+  getMeasurements() {
+    let dummyMeasurement = {
+      city: null,
+      country: null,
+      location: null,
+      parameter: null,
+      unit: null,
+      value: null,
+      coordinates: { latitude: 59.362291, longitude: 59.362291 },
+      date: null
+    };
+    let allMeasurements = new Array<Measurement>();
+
+    for (let index = 0; index < 30; index++) {
+      allMeasurements.push(dummyMeasurement);
+    }
+
+    return Observable.of(allMeasurements);
+  }
+}
