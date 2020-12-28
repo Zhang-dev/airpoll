@@ -28,7 +28,7 @@ All error logs can be retrieved from the `error.log` under the backend folder.
 
 #### Automated tests
 
-- Make sure the backend app is not launching, otherwise the port will be occupied with the app, the tests can not be started.
+- Make sure the backend is not launching, otherwise the port will be occupied with the app, the tests can not be started.
 - Once checked out, navigate to the `backend` folder.
 - In the terminal, run `npm i -g jest` to download jest.
 - In the terminal, run `npm test` to run automated tests. Test results and code coverage will be shown in ternimal.
@@ -38,7 +38,7 @@ All error logs can be retrieved from the `error.log` under the backend folder.
 
 #### How to run the frontend application
 
-- Make sure the backend app is launching.
+- Make sure the backend is launching.
 - Once checked out, navigate to the `frontend` folder
 - In the terminal, run `npm install` to download all dependencies
 - To run the application, execute the command `ng serve` (development mode)
@@ -52,7 +52,7 @@ Before launching frontend angular app, make sure you've launched backend in orde
 
 On launch of the app, the frontend will connect the backend for fetching air quality data.
 
-The air quality data will be redered on the "Air quality" page in a table. It will load 20 data firtly, and will load 5 more data if user scrolls to the bottom of the table until there are no more data in the database.(Infinitive scrolling)
+The air quality data will be redered on the "Air quality" page in a table. It will load 20 data for the first time, and load 5 more data if user scrolls to the bottom of the table until there are no more data in the database.(Infinitive scrolling)
 
 The data can be sorted by clicking on the table header (ASC and DESC).
 
