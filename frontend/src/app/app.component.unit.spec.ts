@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidenavListComponent } from './components/sidenav-list/sidenav-list.component';
+import { AngularMaterialModule } from './material/material.module';
 
 describe('AppComponent - onResize', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -8,8 +12,8 @@ describe('AppComponent - onResize', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      imports: [RouterTestingModule, AngularMaterialModule, BrowserAnimationsModule],
+      declarations: [AppComponent, SidenavListComponent, HeaderComponent],
     }).compileComponents();
   }));
 

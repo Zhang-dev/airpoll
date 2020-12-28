@@ -26,5 +26,6 @@ describe('SidenavListComponent - onSidenavClosed', () => {
     component.onSidenavClose();
 
     expect(spy).toHaveBeenCalled();
+    spy.calls.reset();
   });
 });

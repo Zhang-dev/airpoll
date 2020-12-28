@@ -8,6 +8,6 @@ export interface Measurement{
     parameter: string;
     unit: string;
     value: number;
-    coordinates: Coordinates;
+    coordinates: AppCoordinates;
     date: AppDate;
 }
