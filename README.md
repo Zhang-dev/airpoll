@@ -1,10 +1,10 @@
-# CODE.NOW!
-
-## AirPoll App
+# AirPoll App
 
 ## Setup
 
-Download and unzip the source repository or clone it using Git.
+Download and unzip the source repository or clone it using Git. 
+
+Frontend will be launched on port 4200, and backend on 9000, please make them free on you local machine before testing the app.
 
 ### Backend
 
@@ -26,8 +26,6 @@ It provides an api for querying all air qualtiy data: `http://localhost:9000/api
 
 All error logs can be retrieved from the `error.log` under the backend folder.
 
-In the terminal, go to the backend folder, and run `error.log`.
-
 #### Automated tests
 
 - Make sure the backend app is not launching, otherwise the port will be occupied with the app, the tests can not be started.
@@ -40,6 +38,7 @@ In the terminal, go to the backend folder, and run `error.log`.
 
 #### How to run the frontend application
 
+- Make sure the backend app is launching.
 - Once checked out, navigate to the `frontend` folder
 - In the terminal, run `npm install` to download all dependencies
 - To run the application, execute the command `ng serve` (development mode)
