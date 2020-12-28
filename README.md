@@ -1,70 +1,42 @@
 # CODE.NOW!
 
-<p align="center">
-  <img src="https://github.com/AccentureChallenge/Code.Now/blob/master/frontend/src/assets/acnCodeNowHeader.png">
-</p>
-
-Are you ready to make an impact? Then join our Accenture Code.Now challenge!​
-
-Air pollution is an important topic and will influence the quality of our future. As the hazards of air pollution remain invisible without air quality data, AirPoll as a young, international startup, has developed and placed air quality monitors all over the world in order to provide the largest air quality database. ​
-
-​You have been hired by the company as a full stack developer to build an air quality app which makes it possible for everyone to check the air quality in their cities. Are you up for the challenge?​
-
-Among all correct submitted codes we will raffle three Oculus Quests! This is a full stack developer challenge which consists of a frontend and a backend development part. Clone the according repository and solve the challenge. To submit you will have to push your work to your own GitHub account and make sure your repository is public. All we need is the link to your repository until 10.01.2021.​
-
-Let`s make an impact together! We are looking forward to your solutions!​
-
-## Use case - AirPoll App
-
-### Background
-
-AirPoll is a young, international startup which is aware of the fact, that the hazards of air pollution will remain invisible without air quality data. AirPoll has developed and placed air quality monitors all over the world in order to provide the largest air quality database.
-
-You have been hired by the company as a fullstack developer to build an air quality app that makes it possible for everyone to check the air quality in their cities.
-
-### Your Tasks
-
-#### In the Frontend:
-
-The client wants you to build a web application to display the air quality index and other relevant properties for countries, its cities and its locations.
-The frontend should be user friendly and fulfill the following requirements;
-
-- Responsive UI, ensuring adaptive viewport for mobile devices and PC/laptop
-- Clean and modern design
-- The following attributes need to be displayed in the order given:
-  - the `location` name
-  - the `city` and `country` name
-  - the `air pollution` value and its `measurement unit` and `particulate matter` parameter
-  - the location's `longitude` and `latitude` value
-  - the `local date and time` value
-- The list must support infinite scrolling and should be sortable by each attribute(ASC and DESC)
-
-Additionally, the client demands a solution capable of filtering the data by;
-- one country
-- one city
-
-The project will soon scale and more developers will support you on feature development. Therefore, clean code principles, appropriate test coverage and code documentation are key factors and highly valued.
-
-#### In the Backend:
-
-The design and implementation of the backend component is part of your responsibility. The air quality data for the web app is provided by the [Open AQ Platform API](https://openaq.org/#/?_k=bgfemx).
-The backend needs to be capable to;
-
-- Fetch data from AQ public API
-- Insert AQ API data into a database
-- Provide endpoint to serve AQ data to the frontend
+## AirPoll App
 
 ## Setup
 
 Download and unzip the source repository or clone it using Git.
 
+### Backend
+
+#### How to run the backend application
+
+- Once checked out, navigate to the `backend` folder.
+- In the terminal, run `npm install` to download all dependencies.
+- To run the application, execute the command `node index.js`.
+- Please wait until the message `Data insertion completed.` shown on your terminal.
+- Navigate to `http://localhost:9000/` in your browser, a welcome message will be shown.
+
+#### App description
+
+Airpoll backend is an express-based server. 
+
+On launching the app, it will fetch data from Open AQ Platform API and insert them into a mongoDB cloud database. The link to the cloud database can be found under `backend/config/${env}.json`. By default it will fetch 100 air quality data of different locations.
+
+It provides an api for querying all air qualtiy data: `http://localhost:9000/api/measurements`. For testing purpose, you can use `http://localhost:9000/api/measurements/removeAll` to delete all data in the cloud database.
+
+All error logs can be retrieved from the `error.log` under the backend folder.
+
+In the terminal, go to the backend folder, and run `error.log`.
+
+#### Automated tests
+
+- Make sure the backend app is not launching, otherwise the port will be occupied with the app, the tests can not be started.
+- Once checked out, navigate to the `backend` folder.
+- In the terminal, run `npm i -g jest` to download jest.
+- In the terminal, run `npm test` to run automated tests. Test results and code coverage will be shown in ternimal.
+- Open `/backend/coverage/Icov-report/index.html` in chrome browser, the code coverage is also available.
+
 ### Frontend
-
-#### What you need
-
-- A favorite text editor or IDE
-- [Node.js 12.16.2](https://nodejs.org/en/download/) or later which includes npm (Node Package Manager)
-- Install the [Angular CLI](https://angular.io/guide/setup-local) via npm in your terminal: `npm install -g @angular/cli`
 
 #### How to run the frontend application
 
@@ -73,10 +45,25 @@ Download and unzip the source repository or clone it using Git.
 - To run the application, execute the command `ng serve` (development mode)
 - Navigate to `http://localhost:4200/` in your browser to view the application
 
-## Submission
+#### App description
 
-- After you completed the challenge, upload it to your github page and make it public (so our team can review it)
-- Use our [npm plugin](https://www.npmjs.com/package/acn-code-now) to submit your work
+The Airpoll app consists of two pages, the home page and the page (Air Quality) which displays the air quality index and other relevant properties.
+
+Before launching frontend angular app, make sure you've launched backend in order to get data for rendering.
+
+On launch of the app, the frontend will connect the backend for fetching air quality data.
+
+The air quality data will be redered on the "Air quality" page in a table. It will load 20 data firtly, and will load 5 more data if user scrolls to the bottom of the table until there are no more data in the database.(Infinitive scrolling)
+
+The data can be sorted by clicking on the table header (ASC and DESC).
+
+User can also filter data by inputing country or city name in the search field.
+
+When users resize window to smaller size(window innerwidth less than 768), the app will switch to the mobile mode, in which the link on navigation bar will be replaced with a menu button. On clicking the menu button, a side navigation bar with the router links will be shown.
+
+#### Automated tests
+
+Under the frontend directive, use `ng test --code-coverage` in your terminal for automated tests. The test results will show in chrome browser. The code coverage can be retrieved on the terminal or under `frontend/coverage/acn-code-now/index.html`.
 
 ## Copyright and License
 
